@@ -9,11 +9,7 @@ const Restaurants = props => (
             <div className="rest__box">
               <img src={item.image_url} alt={item.name} />
               <div className="rest__text">
-                <h5 className="rest__title">
-                  {item.name.length < 40
-                    ? `${item.name}`
-                    : `${item.name.substring(0, 40)}...`}
-                </h5>
+                <h5 className="rest__title">{item.name}</h5>
                 <p className="rest__subtitle">
                   Address: <span>{item.address}</span>
                 </p>
