@@ -3,24 +3,36 @@ import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      isLoaded: false
+    };
+  }
+  componentDidMount() {
+    fetch("http://opentable.herokuapp.com/api/restaurants?city=toronto")
+      .then(res => res.json())
+      .then(json => {
+        console.log(json);
+        this.setState({
+          isLoaded: true,
+          items: json["restaurants"]
+        });
+      });
+  }
   render() {
+    var { isLoaded, items } = this.state;
+    if (!isLoaded) {
+      return <div>Loading...</div>;
+    }
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload. Wooo, everything
-            set up.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {this.state.items.map(item => (
+          <li>
+            Name: {item.name} | Address: {item.address} | Price: {item.price}
+          </li>
+        ))}
       </div>
     );
   }
