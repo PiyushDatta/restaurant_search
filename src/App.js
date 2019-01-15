@@ -1,38 +1,56 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
+import Form from "./components/form";
+import Restaurants from "./components/restaurants";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      isLoaded: false
-    };
+class App extends React.Component {
+  constructor() {
+    super();
   }
-  componentDidMount() {
-    fetch("http://opentable.herokuapp.com/api/restaurants?city=toronto")
-      .then(res => res.json())
-      .then(json => {
-        console.log(json);
-        this.setState({
-          isLoaded: true,
-          items: json["restaurants"]
-        });
+  state = {
+    items: []
+  };
+
+  // getRestaurants is a method we'll use to make the api call
+  getRestaurants = async e => {
+    const city = e.target.elements.cityName.value;
+
+    // to prevent the page from refreshing on submit button
+    e.preventDefault();
+
+    // if they don't input a city name, we don't have to call our api
+    if (!city) {
+      this.processError();
+    } else {
+      const api_call = await fetch(
+        `http://opentable.herokuapp.com/api/restaurants?city=${city}`
+      );
+      const response = await api_call.json();
+      console.log(response);
+      // our info in buried in the tag called "restaurants"
+      this.setState({
+        items: response["restaurants"],
+        error: ""
       });
-  }
-  render() {
-    var { isLoaded, items } = this.state;
-    if (!isLoaded) {
-      return <div>Loading...</div>;
     }
+  };
+
+  // If the user doesn't type in a city and presses enter
+  processError() {
+    console.log("error");
+    this.setState({
+      error: "Please input search values..."
+    });
+  }
+
+  render() {
     return (
       <div className="App">
-        {this.state.items.map(item => (
-          <li>
-            Name: {item.name} | Address: {item.address} | Price: {item.price}
-          </li>
-        ))}
+        <header className="App-header">
+          <h1 className="App-title">Restaurant Search</h1>
+        </header>
+        <Form getRestaurants={this.getRestaurants} />
+        <Restaurants restaurants={this.state.items} />
       </div>
     );
   }
