@@ -1,25 +1,31 @@
 import React from "react";
 
 const Restaurants = props => (
-  <div>
-    {props.restaurants.map(item => {
-      return (
-        <div key={item.id}>
-          <img src={item.image_url} alt={item.name} />
-          <p>
-            <b>Name: </b>
-            {item.name}
-          </p>
-          <p>
-            <b>Address: </b> {item.address}
-          </p>
-          <p>
-            <b>Price: </b>
-            {item.price}
-          </p>
-        </div>
-      );
-    })}
+  <div className="container">
+    <div className="row">
+      {props.restaurants.map(item => {
+        return (
+          <div key={item.name} style={{ marginBottom: "2rem" }}>
+            <div className="rest__box">
+              <img src={item.image_url} alt={item.name} />
+              <div className="rest__text">
+                <h5 className="rest__title">
+                  {item.name.length < 40
+                    ? `${item.name}`
+                    : `${item.name.substring(0, 40)}...`}
+                </h5>
+                <p className="rest__subtitle">
+                  Address: <span>{item.address}</span>
+                </p>
+                <p className="rest__subtitle">
+                  Price: <span>{item.price}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
   </div>
 );
 

@@ -1,3 +1,5 @@
-test("Fake Test", () => {
-  expect(true).toBeTruthy();
+describe("My App", () => {
+  test("works with async/await", async () => {
+    const hello = await foo();
+  });
 });
