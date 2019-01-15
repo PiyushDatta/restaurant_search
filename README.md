@@ -1,7 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## For best experience please download and use npm start, website currently not picking up css styles
-
 ## Website: <https://restaurant-search-opentable.herokuapp.com/>
 
 ## Available Scripts
