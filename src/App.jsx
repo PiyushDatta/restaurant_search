@@ -1,7 +1,7 @@
 import React from "react";
-import "./App.css";
-import Form from "./components/form";
-import Restaurants from "./components/restaurants";
+// import "./App.css";
+import Form from "./constants/form";
+import Restaurants from "./constants/restaurants";
 
 class App extends React.Component {
   state = {

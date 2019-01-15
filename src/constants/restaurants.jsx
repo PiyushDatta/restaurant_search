@@ -3,6 +3,7 @@ import React from "react";
 const Restaurants = props => (
   <div className="container">
     <div className="row">
+      {/* map each item */}
       {props.restaurants.map(item => {
         return (
           <div key={item.name} style={{ marginBottom: "2rem" }}>
