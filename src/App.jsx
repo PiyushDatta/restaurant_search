@@ -20,7 +20,7 @@ class App extends React.Component {
       this.processError();
     } else {
       const api_call = await fetch(
-        `http://opentable.herokuapp.com/api/restaurants?city=${city}`
+        `https://opentable.herokuapp.com/api/restaurants?city=${city}`
       );
       const response = await api_call.json();
       console.log(response);
