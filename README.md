@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Website: `https://dashboard.heroku.com/apps/restaurant-search-opentable`
+## Website: <https://restaurant-search-opentable.herokuapp.com/>
 
 ## Available Scripts
 
